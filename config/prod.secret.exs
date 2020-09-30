@@ -1,15 +1,8 @@
-# In this file, we load production configuration and secrets
-# from environment variables. You can also hardcode secrets,
-# although such is generally not recommended and you have to
-# remember to add this file to your .gitignore.
 use Mix.Config
 
 database_url =
   System.get_env("DATABASE_URL") ||
-    raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
-    """
+    raise "Environment variable DATABASE_URL is missing. For example: ecto://USER:PASS@HOST/DATABASE"
 
 config :ispmail_admin, IspmailAdmin.Repo,
   # ssl: true,
@@ -18,10 +11,7 @@ config :ispmail_admin, IspmailAdmin.Repo,
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
-    raise """
-    environment variable SECRET_KEY_BASE is missing.
-    You can generate one by calling: mix phx.gen.secret
-    """
+    raise "Environment variable SECRET_KEY_BASE is missing. You can generate one by calling: mix phx.gen.secret"
 
 config :ispmail_admin, IspmailAdminWeb.Endpoint,
   http: [
@@ -39,3 +29,10 @@ config :ispmail_admin, IspmailAdminWeb.Endpoint,
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
+
+config :ispmail_admin,
+  live_dashboard: [
+    username: "admin",
+    password: "3pg#9hwjf%f5yc6JYRvgl&#as!1#SDI6",
+    realm: "Do you even sudo bro?"
+  ]

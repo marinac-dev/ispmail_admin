@@ -74,3 +74,10 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :ispmail_admin,
+  live_dashboard: [
+    username: "admin",
+    password: "admin",
+    realm: "Do you even sudo bro?"
+  ]
