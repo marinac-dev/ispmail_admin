@@ -1,4 +1,4 @@
-# Don't include
+# Default don't include
 /_build/
 /cover/
 /deps/
@@ -15,3 +15,6 @@ npm-debug.log
 
 # Ignore Dialyzer plts
 /priv/plts/
+
+# Ignore ElixirLS for VSCode
+/.elixir_ls/
