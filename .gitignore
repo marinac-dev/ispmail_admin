@@ -1,0 +1,11 @@
+# Don't include
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+erl_crash.dump
+*.ez
+ispmail_admin-*.tar
+npm-debug.log
+/assets/node_modules/
