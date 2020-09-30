@@ -1,2 +1,11 @@
 == ISP mail admin ==
 Web interface for managing users, mailboxes and domains.
+
+# Sys req
+- Elixir: 1.10.4
+- Phoenix: 1.5.5
+- Phoenix LiveView: 0.14.7
+- Ecto: 3.4
+
+Note:
+- This app uses :os_mon, available to install with sudo apt install erlang-os-mon
