@@ -1,11 +1,48 @@
 == ISP mail admin ==
-Web interface for managing users, mailboxes and domains.
+Web interface for managing users, mailboxes, and domains.
 
-# Sys req
+# System requirements
+
+Hardware:
+- 1 vCPU
+- 512MB RAM (suggested 1GB)
+- 20GB Storage
+
+Software bundle for ISP mail system:
+- Ubuntu 18.04 LTS
+  * Tested on this version but should work also on 20.04 LTS
+- PostgreSQL 12
+- Roundcube - Webmail
+- Dovecot - IMAP
+- Postfix - SMTP
+- Rspam - Email processing system (spam filter)
+
+Dev env:
 - Elixir: 1.10.4
 - Phoenix: 1.5.5
-- Phoenix LiveView: 0.14.7
-- Ecto: 3.4
 
-Note:
-- This app uses :os_mon, available to install with sudo apt install erlang-os-mon
+Background story?
+- A few days ago while following the tutorial on workaround.org (ISPmail on Debian Buster) 
+I got to the point where I needed to manage domains and mailboxes. Of course, I didn't want 
+to handwrite SQL query every time I needed a new mailbox and the options provided like ISPmail 
+Admin and GRSoft Virtual Mail Manager didn't strike me with confidence (plus they were ugly).
+Plus another free and opensource option won't hurt that much. Right? Right...
+Hence I decided to create ISP mail admin, not a very creative name I know but accurate nonetheless.
+
+Purpose?
+- In general, my goal was to have a self-hosted, fully functional, and reliable e-mail system. 
+  Elixir plays nicely in this scenario since we need software that will deploy once and run "forever" (khm erlang).
+
+TODO:
+- Have user account:
+- Auth with username/password
+- 2fa for extra security
+- CRUD for domains
+- DNS Configuration per domain
+  * MX, DKIM, SPF, DMARC, Autoconfig
+- CRUD for mailboxes
+- CRUD for aliases
+
+Notes:
+* This app uses :os_mon, available to install with sudo apt install erlang-os-mon
+* CRUD stands for Create/Read/Update/Delete
