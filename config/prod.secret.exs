@@ -20,19 +20,9 @@ config :ispmail_admin, IspmailAdminWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
-# ## Using releases (Elixir v1.9+)
-#
-# If you are doing OTP releases, you need to instruct Phoenix
-# to start each relevant endpoint:
-#
-#     config :ispmail_admin, IspmailAdminWeb.Endpoint, server: true
-#
-# Then you can assemble a release by calling `mix release`.
-# See `mix help release` for more information.
-
-config :ispmail_admin,
+  config :ispmail_admin,
   live_dashboard: [
     username: "admin",
-    password: "3pg#9hwjf%f5yc6JYRvgl&#as!1#SDI6",
+    password: "YOUR_PASSWORD",
     realm: "Do you even sudo bro?"
   ]
