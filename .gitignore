@@ -9,3 +9,9 @@ erl_crash.dump
 ispmail_admin-*.tar
 npm-debug.log
 /assets/node_modules/
+
+# Ignore static files (everything will come from /assets/)
+/priv/static/
+
+# Ignore Dialyzer plts
+/priv/plts/
