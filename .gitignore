@@ -2,6 +2,7 @@
 /_build/
 /cover/
 /deps/
+/config/prod.secret.exs
 /doc/
 /.fetch
 erl_crash.dump
