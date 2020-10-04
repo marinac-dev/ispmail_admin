@@ -1,7 +1,7 @@
 == ISP mail admin ==
 Web interface for managing users, mailboxes, and domains.
 
-# System requirements
+# System requirements (aimed for EC2 t2-micro & t2-nano)
 
 Hardware:
 - 1 vCPU
@@ -9,32 +9,20 @@ Hardware:
 - 20GB Storage
 
 Software bundle for ISP mail system:
-- Ubuntu 18.04 LTS
-  * Tested on this version but should work also on 20.04 LTS
-- PostgreSQL 12
-- Roundcube - Webmail
+- Ubuntu 18.04 LTS (Tested on this version but should work on 20.04 LTS)
+- PostgreSQL 12 - Database
 - Dovecot - IMAP
 - Postfix - SMTP
 - Rspam - Email processing system (spam filter)
+- Roundcube - Webmail
+- ISP mail admin (this repo)
 
 Dev env:
 - Elixir: 1.10.4
 - Phoenix: 1.5.5
 
-Background story?
-- A few days ago while following the tutorial on workaround.org (ISPmail on Debian Buster) 
-I got to the point where I needed to manage domains and mailboxes. Of course, I didn't want 
-to handwrite SQL query every time I needed a new mailbox and the options provided like ISPmail 
-Admin and GRSoft Virtual Mail Manager didn't strike me with confidence (plus they were ugly).
-Plus another free and opensource option won't hurt that much. Right? Right...
-Hence I decided to create ISP mail admin, not a very creative name I know but accurate nonetheless.
-
-Purpose?
-- In general, my goal was to have a self-hosted, fully functional, and reliable e-mail system. 
-  Elixir plays nicely in this scenario since we need software that will deploy once and run "forever" (khm erlang).
-
 TODO:
-- Have user account:
+- Have user account: ✓
 - Auth with username/password
 - 2fa for extra security
 - CRUD for domains
@@ -42,6 +30,28 @@ TODO:
   * MX, DKIM, SPF, DMARC, Autoconfig
 - CRUD for mailboxes
 - CRUD for aliases
+
+Background story?
+- A while ago I was following the tutorial on workaround.org (ISPmail on Debian Buster) 
+  and got to the point where I needed to manage domains and mailboxes. And of course, I didn't want
+  to handwrite SQL query every time I needed a new mailbox, but the options provided like ISPmail 
+  Admin and GRSoft Virtual Mail Manager didn't strike me with confidence (and IMO the UI was ugly).
+  Plus another free and opensource option won't hurt that much. Right? Right...
+  Hence I decided to create Elixir ISP mail admin, not a very creative name I know but accurate nonetheless.
+
+Purpose and goal?
+- Elixir plays nicely in this scenario since we need software that will deploy once and run "forever" (khmm erlang).
+- In general, my goal is to have a self-hosted, fully functional, performant, stable and reliable e-mail system.
+  Besides, the things I just mentioned, I want it to be "cheap" (free with AWS EC2 12 months trial) 
+  and low spec (can run on 512MB RAM). I say "cheap" because after that one year you will have to pay ~5$ per month
+  wich turns out to be 12*5$=60$ per year and some providedrs offer it at ~20$ which is better (kind of)
+
+- BUT if you don't want to use AWS or third-party solution (this is a self-hosted solution after all), you are gonna need:
+  + Old working PC or RaspberyPI (Elixir can work on a Raspberry Pi just compile your releases for Arm)
+  + Dynamic DNS solution
+  + This or workaround.org/ispmail guide
+- If your hardware is powerful enough there are already bundled solutions like iRedMail, Mailcoow, Zimbra, tomav/docker-mailserver (GitHub), etc.
+- This is also a learning guide. The more you know the better you grow. Right? Right...
 
 Notes:
 * This app uses :os_mon, available to install with sudo apt install erlang-os-mon
