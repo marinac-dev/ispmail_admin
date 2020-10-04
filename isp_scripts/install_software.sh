@@ -20,15 +20,19 @@ printf "${G}- Installing pwgen ${NC}\n"
 sudo apt install pwgen -y
 
 # Install PostgreSQL
-printf "${G}- Installing PostgreSQL ${NC}\n"
+printf "${G}- Preparing to install PostgreSQL ${NC}\n"
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update -y
+printf "${G}- Installing PostgreSQL ${NC}\n"
 sudo apt-get -y install postgresql-12
 
 # Postfix and Postfix-PostgreSQL adapter
 printf "${G}- Installing Postfix ${NC}\n"
 sudo apt install postfix postfix-pgsql -y
+
+# Apache2 and php7 for Roundcube | Nginx in future????
+printf "${G}- Installing Apache2 & php7 ${NC}\n"
 sudo apt install apache2 php7.4 -y
 
 # Rspamd e-mail processing system
