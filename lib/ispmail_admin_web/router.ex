@@ -40,14 +40,16 @@ defmodule IspmailAdminWeb.Router do
   scope "/", IspmailAdminWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
-    get "/users/register", User.RegistrationController, :new
-    post "/users/register", User.RegistrationController, :create
-    get "/users/log_in", User.SessionController, :new
-    post "/users/log_in", User.SessionController, :create
-    get "/users/reset_password", User.ResetPasswordController, :new
-    post "/users/reset_password", User.ResetPasswordController, :create
-    get "/users/reset_password/:token", User.ResetPasswordController, :edit
-    put "/users/reset_password/:token", User.ResetPasswordController, :update
+    # Register
+    get "/register", User.RegistrationController, :new
+    post "/register", User.RegistrationController, :create
+    # Log in
+    get "/log_in", User.SessionController, :new
+    post "/log_in", User.SessionController, :create
+    get "/reset_password", User.ResetPasswordController, :new
+    post "/reset_password", User.ResetPasswordController, :create
+    get "/reset_password/:token", User.ResetPasswordController, :edit
+    put "/reset_password/:token", User.ResetPasswordController, :update
   end
 
   scope "/", IspmailAdminWeb do
