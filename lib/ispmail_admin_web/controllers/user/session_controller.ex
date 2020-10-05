@@ -2,7 +2,7 @@ defmodule IspmailAdminWeb.User.SessionController do
   use IspmailAdminWeb, :controller
 
   alias IspmailAdmin.Accounts
-  alias IspmailAdminWeb.UserAuth
+  alias IspmailAdminWeb.User.Auth
 
   def new(conn, _params) do
     render(conn, "new.html", error_message: nil)
@@ -12,7 +12,7 @@ defmodule IspmailAdminWeb.User.SessionController do
     %{"email" => email, "password" => password} = user_params
 
     if user = Accounts.get_user_by_email_and_password(email, password) do
-      UserAuth.log_in_user(conn, user, user_params)
+      Auth.log_in_user(conn, user, user_params)
     else
       render(conn, "new.html", error_message: "Invalid email or password")
     end
@@ -21,6 +21,6 @@ defmodule IspmailAdminWeb.User.SessionController do
   def delete(conn, _params) do
     conn
     |> put_flash(:info, "Logged out successfully.")
-    |> UserAuth.log_out_user()
+    |> Auth.log_out_user()
   end
 end

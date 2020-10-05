@@ -13,7 +13,7 @@ defmodule IspmailAdminWeb.User.ResetPasswordController do
     if user = Accounts.get_user_by_email(email) do
       Accounts.deliver_user_reset_password_instructions(
         user,
-        &Routes.user_reset_password_url(conn, :edit, &1)
+        &Routes.reset_password_url(conn, :edit, &1)
       )
     end
 
@@ -37,7 +37,7 @@ defmodule IspmailAdminWeb.User.ResetPasswordController do
       {:ok, _} ->
         conn
         |> put_flash(:info, "Password reset successfully.")
-        |> redirect(to: Routes.user_session_path(conn, :new))
+        |> redirect(to: Routes.session_path(conn, :new))
 
       {:error, changeset} ->
         render(conn, "edit.html", changeset: changeset)

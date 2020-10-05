@@ -3,7 +3,7 @@ defmodule IspmailAdminWeb.User.RegistrationController do
 
   alias IspmailAdmin.Accounts
   alias IspmailAdmin.Accounts.User
-  alias IspmailAdminWeb.UserAuth
+  alias IspmailAdminWeb.User.Auth
 
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
@@ -16,12 +16,12 @@ defmodule IspmailAdminWeb.User.RegistrationController do
         {:ok, _} =
           Accounts.deliver_user_confirmation_instructions(
             user,
-            &Routes.user_confirmation_url(conn, :confirm, &1)
+            &Routes.confirmation_url(conn, :confirm, &1)
           )
 
         conn
         |> put_flash(:info, "User created successfully.")
-        |> UserAuth.log_in_user(user)
+        |> Auth.log_in_user(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
