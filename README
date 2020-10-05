@@ -44,7 +44,7 @@ Purpose and goal?
 - In general, my goal is to have a self-hosted, fully functional, performant, stable and reliable e-mail system.
   Besides, the things I just mentioned, I want it to be "cheap" (free with AWS EC2 12 months trial) 
   and low spec (can run on 512MB RAM). I say "cheap" because after that one year you will have to pay ~5$ per month
-  wich turns out to be 12*5$=60$ per year and some providedrs offer it at ~20$ which is better (kind of)
+  wich turns out to be 12*5$=60$ per year and some providers offer it at ~20$ which is better (kind of)
 
 - BUT if you don't want to use AWS or third-party solution (this is a self-hosted solution after all), 
   you are gonna need:
