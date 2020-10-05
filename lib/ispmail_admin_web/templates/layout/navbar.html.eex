@@ -1,0 +1,15 @@
+<header class="w-full flex flex-row justify-between items-center">
+  <a href="/" class="flex items-center justify-center pl-4 pt-2 text-blue-600 text-xl font-medium">
+    Elixir ISPmail admin
+  </a>
+  <div class="mt-2">
+    <%= if @current_user do %>
+      <%= @current_user.email %>
+      <%= link "Settings", to: Routes.settings_path(@conn, :edit), class: "mx-2 " %>
+      <%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, class: "mx-2 " %>
+    <% else %>
+      <%= link "Register", to: Routes.registration_path(@conn, :new), class: "mr-3 bg-gray-700 px-4 py-2 text-blue-400 rounded hover:underline" %>
+      <%= link "Log in", to: Routes.session_path(@conn, :new), class: "mr-3 bg-gray-700 px-4 py-2 text-green-400 rounded hover:underline" %>
+    <% end %>
+  </div>
+</header>

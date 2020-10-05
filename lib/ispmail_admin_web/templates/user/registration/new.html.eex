@@ -1,26 +1,47 @@
-<h1>Register</h1>
+<div class="w-full flex flex-col justify-center items-center">
+  <h1>Register</h1>
+  <%= form_for @changeset, Routes.registration_path(@conn, :create), [class: "flex flex-col justify-center items-center bg-gray-100"] ,fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
 
-<%= form_for @changeset, Routes.registration_path(@conn, :create), fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <!-- E-mail -->
+    <div class="flex flex-col justify-between items-center py-3 px-5 rounded-md mb-4">
+      <div class="flex flex-col lg:flex-row justify-center items-center border dark:border-sage-500 rounded-md relative p-2 pt-4">
+        <%= label f, :email, class: "bg-gray-100 text-indigo-600 select-none text-left absolute top-0 -mt-3 left-0 ml-4 px-2 dark:text-indigo-300 dark:bg-erie-black-700" %>
+        <%= email_input f, :email, required: true, autocomplete: "new", placeholder: "Type here...", class: "appearance-none rounded text-lg w-64 h-10 px-2 bg-gray-200 dark:bg-erie-black-500 dark:placeholder-current opacity-75 focus:opacity-100 focus:outline-none" %>
+      </div>
+      <!-- Error message -->
+      <%= if error_tag(f, :email) != [] do %>
+        <p class="mt-2 text-red-400 dark:text-red-300 text-xs italic uppercase">
+          <%= error_tag(f, :email) %>
+        </p>
+      <% end %>
+    </div>
+
+    <!-- Password -->
+    <div class="flex flex-col justify-between items-center py-3 px-5 rounded-md mb-4">
+      <div class="flex flex-col lg:flex-row justify-center items-center border dark:border-sage-500 rounded-md relative p-2 pt-4">
+        <%= label f, :password, class: "bg-gray-100 text-indigo-600 select-none text-left absolute top-0 -mt-3 left-0 ml-4 px-2 dark:text-indigo-300 dark:bg-erie-black-700" %>
+        <%= password_input f, :password, required: true, autocomplete: "new-password", placeholder: "Type here...", class: "appearance-none rounded text-lg w-64 h-10 px-2 bg-gray-200 dark:bg-erie-black-500 dark:placeholder-current opacity-75 focus:opacity-100 focus:outline-none" %>
+      </div>
+      <!-- Error message -->
+      <%= if error_tag(f, :password) != [] do %>
+        <p class="mt-2 text-red-400 dark:text-red-300 text-xs italic uppercase">
+          <%= error_tag(f, :password) %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <%= submit "Register", class: "mb-4 px-2 py-1 bg-blue-500 rounded hover:underline" %>
     </div>
   <% end %>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Register" %>
-  </div>
-<% end %>
-
-<p>
-  <%= link "Log in", to: Routes.session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.reset_password_path(@conn, :new) %>
-</p>
+  <p>
+    <%= link "Log in", to: Routes.session_path(@conn, :new) %> |
+    <%= link "Forgot your password?", to: Routes.reset_password_path(@conn, :new) %>
+  </p>
+</div>
