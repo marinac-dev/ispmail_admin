@@ -46,7 +46,8 @@ Purpose and goal?
   and low spec (can run on 512MB RAM). I say "cheap" because after that one year you will have to pay ~5$ per month
   wich turns out to be 12*5$=60$ per year and some providedrs offer it at ~20$ which is better (kind of)
 
-- BUT if you don't want to use AWS or third-party solution (this is a self-hosted solution after all), you are gonna need:
+- BUT if you don't want to use AWS or third-party solution (this is a self-hosted solution after all), 
+  you are gonna need:
   + Old working PC or RaspberyPI (Elixir can work on a Raspberry Pi just compile your releases for Arm)
   + Dynamic DNS solution
   + This or workaround.org/ispmail guide
