@@ -27,6 +27,11 @@ sudo apt-get update -y
 printf "${G}- Installing PostgreSQL ${NC}\n"
 sudo apt-get -y install postgresql-12
 
+# Read hostname
+printf "${G}- Enter hostname: ${NC}\n"
+read hostname
+sudo hostnamectl set-hostname $hostname
+
 # Postfix and Postfix-PostgreSQL adapter
 printf "${G}- Installing Postfix ${NC}\n"
 sudo apt install postfix postfix-pgsql -y
