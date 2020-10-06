@@ -1,21 +1,40 @@
-<h1>Your domains</h1>
+<h1 class="text-xl pl-4 mb-4 text-indigo-700 font-medium">Your domains</h1>
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
+    <tr class="bg-gray-300 text-indigo-700 border border-gray-400 rounded">
+      <th class="text-left pr-6">Domain</th>
+      <th class="text-left pr-4">Quota <sup class="text-red-400 font-normal">soon</sup> </th>
+      <th class="text-left pr-4">DNS checks <sup class="text-red-400 font-normal">soon</sup> </th>
+      <th class="text-right pl-8 pr-1">Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="bg-white">
   <%= for domain <- @domains do %>
-    <tr>
-      <td><%= domain.name %></td>
-
+    <tr class="border-b border-gray-400">
+      <td class="pr-10">
+        <%= link to: Routes.domain_path(@conn, :show, domain), class: "text-indigo-400 underline" do %>
+          <%= domain.name %>
+        <% end %>
+      </td>
+      <td class="pr-10">
+        20 GB
+      </td>
+      <td class="pr-10">
+        <span class="border bg-green-200 border-green-400 text-gray-700 rounded px-2">Pass 4/4</span>
+      </td>
       <td>
-        <span><%= link "Show", to: Routes.domain_path(@conn, :show, domain) %></span>
-        <span><%= link "Edit", to: Routes.domain_path(@conn, :edit, domain) %></span>
-        <span><%= link "Delete", to: Routes.domain_path(@conn, :delete, domain), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <%= link to: Routes.domain_path(@conn, :show, domain), class: "text-blue-500 hover:underline" do %>
+          Show <i class="far fa-eye"></i>
+        <% end %>
+        <span class="text-gray-500">|</span>
+        <%= link to: Routes.domain_path(@conn, :edit, domain), class: "text-blue-500 hover:underline" do %>
+          Edit <i class="far fa-edit"></i>
+        <% end %>
+        <span class="text-gray-500">|</span>
+        <%= link to: Routes.domain_path(@conn, :delete, domain), method: :delete, data: [confirm: "Are you sure?"], class: "text-red-400 hover:underline" do %>
+          Delete <i class="far fa-trash-alt"></i>
+        <% end %>
       </td>
     </tr>
   <% end %>
