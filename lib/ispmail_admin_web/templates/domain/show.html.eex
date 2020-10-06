@@ -1,0 +1,13 @@
+<h1>Show Domain</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @domain.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.domain_path(@conn, :edit, @domain) %></span>
+<span><%= link "Back", to: Routes.domain_path(@conn, :index) %></span>
