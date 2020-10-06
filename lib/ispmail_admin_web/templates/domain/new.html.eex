@@ -14,7 +14,7 @@
         <%= label f, :name, class: "bg-gray-100 text-gray-900 select-none text-left absolute top-0 -mt-3 left-0 ml-4 px-2 dark:text-indigo-300 dark:bg-erie-black-700" do %>
           <span class="text-red-600">*</span> Domain name
         <% end %>
-        <%= text_input f, :name, required: true, placeholder: "Type here...", class: "appearance-none rounded text-lg w-64 h-10 px-2 bg-gray-200 dark:bg-erie-black-500 dark:placeholder-current opacity-75 focus:opacity-100 focus:outline-none" %>
+        <%= text_input f, :name, required: true, autocomplete: "off", placeholder: "Type here...", class: "appearance-none rounded text-lg w-64 h-10 px-2 bg-gray-200 dark:bg-erie-black-500 dark:placeholder-current opacity-75 focus:opacity-100 focus:outline-none" %>
       </div>
       <!-- Error message -->
       <%= if error_tag(f, :name) != [] do %>
