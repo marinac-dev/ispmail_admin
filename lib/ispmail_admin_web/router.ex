@@ -17,9 +17,51 @@ defmodule IspmailAdminWeb.Router do
   end
 
   scope "/", IspmailAdminWeb do
-    pipe_through :browser
+    pipe_through [:browser]
 
     get "/", PageController, :index
+
+    # Log out and confirm e-mail
+    delete "/log_out", User.SessionController, :delete
+    get "/confirm", User.ConfirmationController, :new
+    post "/confirm", User.ConfirmationController, :create
+    get "/confirm/:token", User.ConfirmationController, :confirm
+  end
+
+  # Authentication routes
+  scope "/", IspmailAdminWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    # Register
+    get "/register", User.RegistrationController, :new
+    post "/register", User.RegistrationController, :create
+    # Log in
+    get "/log_in", User.SessionController, :new
+    post "/log_in", User.SessionController, :create
+    # Reset password
+    get "/reset_password", User.ResetPasswordController, :new
+    post "/reset_password", User.ResetPasswordController, :create
+    get "/reset_password/:token", User.ResetPasswordController, :edit
+    put "/reset_password/:token", User.ResetPasswordController, :update
+  end
+
+  scope "/", IspmailAdminWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    # Account
+    get "/account", PageController, :account
+
+    # Domain & mailbox
+    resources "/domains", DomainController do
+      resources "/aliases", AliasController
+      resources "/mailboxes", MailboxController
+    end
+
+    # User settings
+    get "/settings", User.SettingsController, :edit
+    put "/settings/update_password", User.SettingsController, :update_password
+    put "/settings/update_email", User.SettingsController, :update_email
+    get "/settings/confirm_email/:token", User.SettingsController, :confirm_email
   end
 
   pipeline :dashboard_auth do
@@ -33,40 +75,5 @@ defmodule IspmailAdminWeb.Router do
 
     pipe_through [:browser, :dashboard_auth]
     live_dashboard "/dashboard", metrics: IspmailAdminWeb.Telemetry
-  end
-
-  ## Authentication routes
-
-  scope "/", IspmailAdminWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
-
-    # Register
-    get "/register", User.RegistrationController, :new
-    post "/register", User.RegistrationController, :create
-    # Log in
-    get "/log_in", User.SessionController, :new
-    post "/log_in", User.SessionController, :create
-    get "/reset_password", User.ResetPasswordController, :new
-    post "/reset_password", User.ResetPasswordController, :create
-    get "/reset_password/:token", User.ResetPasswordController, :edit
-    put "/reset_password/:token", User.ResetPasswordController, :update
-  end
-
-  scope "/", IspmailAdminWeb do
-    pipe_through [:browser, :require_authenticated_user]
-
-    get "/users/settings", User.SettingsController, :edit
-    put "/users/settings/update_password", User.SettingsController, :update_password
-    put "/users/settings/update_email", User.SettingsController, :update_email
-    get "/users/settings/confirm_email/:token", User.SettingsController, :confirm_email
-  end
-
-  scope "/", IspmailAdminWeb do
-    pipe_through [:browser]
-
-    delete "/users/log_out", User.SessionController, :delete
-    get "/users/confirm", User.ConfirmationController, :new
-    post "/users/confirm", User.ConfirmationController, :create
-    get "/users/confirm/:token", User.ConfirmationController, :confirm
   end
 end
