@@ -1,0 +1,18 @@
+<h1>Show Mailbox</h1>
+
+<ul>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @mailbox.address %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @mailbox.password %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.mailbox_path(@conn, :edit, @mailbox) %></span>
+<span><%= link "Back", to: Routes.mailbox_path(@conn, :index) %></span>
