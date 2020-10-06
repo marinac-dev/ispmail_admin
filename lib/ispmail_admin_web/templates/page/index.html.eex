@@ -1,6 +1,8 @@
 <main class="">
   <%= if @current_user do %>
-    Hello, <%= @current_user.email %>
+    <pre>Hello, <%= @current_user.email %>.
+      <%= link "My domains", to: Routes.domain_path(@conn, :index), class: "text-blue-400 hover:underline" %>
+    </pre>
   <% else %>
     <div class="border">
       <h1>Welcome to Elixir ISP e-mail web-admin</h1>
