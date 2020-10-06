@@ -1,0 +1,18 @@
+<h1>Show Alias</h1>
+
+<ul>
+
+  <li>
+    <strong>Source:</strong>
+    <%= @alias.source %>
+  </li>
+
+  <li>
+    <strong>Destination:</strong>
+    <%= @alias.destination %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.alias_path(@conn, :edit, @alias) %></span>
+<span><%= link "Back", to: Routes.alias_path(@conn, :index) %></span>
