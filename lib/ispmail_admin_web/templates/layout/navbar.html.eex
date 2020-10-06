@@ -1,15 +1,63 @@
-<header class="w-full flex flex-row justify-between items-center">
-  <a href="/" class="flex items-center justify-center pl-4 pt-2 text-blue-600 text-xl font-medium">
-    Elixir ISPmail admin
-  </a>
-  <div class="mt-2">
-    <%= if @current_user do %>
-      <%= @current_user.email %>
-      <%= link "Settings", to: Routes.settings_path(@conn, :edit), class: "mx-2 " %>
-      <%= link "Log out", to: Routes.session_path(@conn, :delete), method: :delete, class: "mx-2 " %>
-    <% else %>
+<header class="w-full flex flex-col lg:flex-row justify-between items-center px-2 py-2">
+    <div class="flex flex-row w-full lg:w-auto sm:w-full justify-between items-center">
+    <!-- Logo -->
+    <div>
+      <a href="/" class="flex items-center justify-center text-blue-600 text-xl font-medium">
+        Elixir ISPmail admin
+      </a>
+    </div>
+    <!-- Burger menu -->
+    <div class="flex lg:hidden items-center justify-center p-2 text-2xl cursor-pointer" id="burger-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+  <%= if @current_user do %>
+    <div class="dropdown cursor-pointer w-full hidden lg:block lg:w-auto" id="navbar-menu">
+      <div class="flex flex-row justify-start lg:justify-center items-center mr-2">
+        <button class="flex flex-row justify-center items-center text-blue-800 text-lg">
+          <span class="mr-2">
+            <%= @current_user.email %>
+          </span>
+          <span class="hidden lg:block">
+            <i class="far fa-angle-down"></i>
+          </span>
+        </button>
+      </div>
+      <ul class="dropdown-menu bg-gray-100 text-gray-900 w-full lg:w-40 right-0 lg:rounded-b-lg lg:hidden lg:absolute lg:shadow z-10 pt-2 mr-4">
+        <!-- Account -->
+        <li class="hover:bg-gray-200 cursor-pointer tracking-wider">
+          <%= link to: Routes.page_path(@conn, :account), class: "flex flex-row justify-between items-center px-4 py-2" do %>
+            <span> Account </span>
+            <i class="fal fa-user mr-1 opacity-50"></i>
+          <% end %>
+        </li>
+        <!-- Domains -->
+        <li class="hover:bg-gray-200 cursor-pointer tracking-wider">
+          <%= link to: Routes.domain_path(@conn, :index), class: "flex flex-row justify-between items-center px-4 py-2" do %>
+            <span> Domains </span>
+            <i class="fas fa-server mr-1 opacity-50"></i>
+          <% end %>
+        </li>
+        <!-- Settings -->
+        <li class="hover:bg-gray-200 cursor-pointer tracking-wider">
+          <%= link to: Routes.settings_path(@conn, :edit), class: "flex flex-row justify-between items-center px-4 py-2" do %>
+            <span> Settings </span>
+            <i class="fal fa-cog mr-1 opacity-50"></i>
+          <% end %>
+        </li>
+        <hr class="border-gray-300">
+        <li class="cursor-pointer tracking-wider lg:rounded-b-lg text-red-600 hover:bg-red-200">
+          <%= link to: Routes.session_path(@conn, :delete), data_confirm: "Are you sure?", method: :delete, class: "flex flex-row justify-between items-center px-4 py-2" do %>
+            <span> Sign out </span>
+            <i class="fal fa-sign-out-alt mr-1 opacity-50"></i>
+          <% end  %>
+        </li>
+      </ul>
+    </div>
+  <% else %>
+    <div class="dropdown cursor-pointer w-full hidden lg:block lg:w-auto" id="navbar-menu">
       <%= link "Register", to: Routes.registration_path(@conn, :new), class: "mr-3 bg-gray-700 px-4 py-2 text-blue-400 rounded hover:underline" %>
       <%= link "Log in", to: Routes.session_path(@conn, :new), class: "mr-3 bg-gray-700 px-4 py-2 text-green-400 rounded hover:underline" %>
-    <% end %>
-  </div>
+    </div>
+  <% end  %>
 </header>
