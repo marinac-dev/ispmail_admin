@@ -9,6 +9,10 @@ defmodule IspmailAdmin.Accounts.User do
     field :hashed_password, :string
     field :confirmed_at, :naive_datetime
 
+    field :first_name, :string, size: 100
+    field :middle_name, :string, size: 100
+    field :last_name, :string, size: 100
+
     timestamps()
   end
 
@@ -22,7 +26,7 @@ defmodule IspmailAdmin.Accounts.User do
   """
   def registration_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :first_name, :middle_name, :last_name])
     |> validate_email()
     |> validate_password()
   end
