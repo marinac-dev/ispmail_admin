@@ -26,7 +26,7 @@
 
   <div class="flex flex-row justify-around items-center w-11/12 border border-gray-400 bg-gray-200 text-gray-500 pl-2 py-2 pr-5 rounded-md font-bold select-none">
     <span class="text-sm"> Keep me logged in for 60 days </span>
-    <%= checkbox f, :remember_me, class: "my-4 mr-2 leading-tight" %>
+    <%= checkbox f, :remember_me, class: "styled my-4 mr-2 leading-tight" %>
   </div>
 
   <div class="flex justify-center items-center">
