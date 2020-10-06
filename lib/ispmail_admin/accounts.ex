@@ -346,4 +346,292 @@ defmodule IspmailAdmin.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  alias IspmailAdmin.Accounts.Domain
+
+  @doc """
+  Returns the list of domains.
+
+  ## Examples
+
+      iex> list_domains()
+      [%Domain{}, ...]
+
+  """
+  def list_domains do
+    Repo.all(Domain)
+  end
+
+  @doc """
+  Gets a single domain.
+
+  Raises `Ecto.NoResultsError` if the Domain does not exist.
+
+  ## Examples
+
+      iex> get_domain!(123)
+      %Domain{}
+
+      iex> get_domain!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_domain!(id), do: Repo.get!(Domain, id)
+
+  @doc """
+  Creates a domain.
+
+  ## Examples
+
+      iex> create_domain(%{field: value})
+      {:ok, %Domain{}}
+
+      iex> create_domain(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_domain(attrs \\ %{}) do
+    %Domain{}
+    |> Domain.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a domain.
+
+  ## Examples
+
+      iex> update_domain(domain, %{field: new_value})
+      {:ok, %Domain{}}
+
+      iex> update_domain(domain, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_domain(%Domain{} = domain, attrs) do
+    domain
+    |> Domain.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a domain.
+
+  ## Examples
+
+      iex> delete_domain(domain)
+      {:ok, %Domain{}}
+
+      iex> delete_domain(domain)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_domain(%Domain{} = domain) do
+    Repo.delete(domain)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking domain changes.
+
+  ## Examples
+
+      iex> change_domain(domain)
+      %Ecto.Changeset{data: %Domain{}}
+
+  """
+  def change_domain(%Domain{} = domain, attrs \\ %{}) do
+    Domain.changeset(domain, attrs)
+  end
+
+  alias IspmailAdmin.Accounts.Mailbox
+
+  @doc """
+  Returns the list of mailboxes.
+
+  ## Examples
+
+      iex> list_mailboxes()
+      [%Mailbox{}, ...]
+
+  """
+  def list_mailboxes do
+    Repo.all(Mailbox)
+  end
+
+  @doc """
+  Gets a single mailbox.
+
+  Raises `Ecto.NoResultsError` if the Mailbox does not exist.
+
+  ## Examples
+
+      iex> get_mailbox!(123)
+      %Mailbox{}
+
+      iex> get_mailbox!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_mailbox!(id), do: Repo.get!(Mailbox, id)
+
+  @doc """
+  Creates a mailbox.
+
+  ## Examples
+
+      iex> create_mailbox(%{field: value})
+      {:ok, %Mailbox{}}
+
+      iex> create_mailbox(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_mailbox(attrs \\ %{}) do
+    %Mailbox{}
+    |> Mailbox.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a mailbox.
+
+  ## Examples
+
+      iex> update_mailbox(mailbox, %{field: new_value})
+      {:ok, %Mailbox{}}
+
+      iex> update_mailbox(mailbox, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_mailbox(%Mailbox{} = mailbox, attrs) do
+    mailbox
+    |> Mailbox.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a mailbox.
+
+  ## Examples
+
+      iex> delete_mailbox(mailbox)
+      {:ok, %Mailbox{}}
+
+      iex> delete_mailbox(mailbox)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_mailbox(%Mailbox{} = mailbox) do
+    Repo.delete(mailbox)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking mailbox changes.
+
+  ## Examples
+
+      iex> change_mailbox(mailbox)
+      %Ecto.Changeset{data: %Mailbox{}}
+
+  """
+  def change_mailbox(%Mailbox{} = mailbox, attrs \\ %{}) do
+    Mailbox.changeset(mailbox, attrs)
+  end
+
+  alias IspmailAdmin.Accounts.Alias
+
+  @doc """
+  Returns the list of aliases.
+
+  ## Examples
+
+      iex> list_aliases()
+      [%Alias{}, ...]
+
+  """
+  def list_aliases do
+    Repo.all(Alias)
+  end
+
+  @doc """
+  Gets a single alias.
+
+  Raises `Ecto.NoResultsError` if the Alias does not exist.
+
+  ## Examples
+
+      iex> get_alias!(123)
+      %Alias{}
+
+      iex> get_alias!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_alias!(id), do: Repo.get!(Alias, id)
+
+  @doc """
+  Creates a alias.
+
+  ## Examples
+
+      iex> create_alias(%{field: value})
+      {:ok, %Alias{}}
+
+      iex> create_alias(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_alias(attrs \\ %{}) do
+    %Alias{}
+    |> Alias.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a alias.
+
+  ## Examples
+
+      iex> update_alias(alias, %{field: new_value})
+      {:ok, %Alias{}}
+
+      iex> update_alias(alias, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_alias(%Alias{} = alias, attrs) do
+    alias
+    |> Alias.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a alias.
+
+  ## Examples
+
+      iex> delete_alias(alias)
+      {:ok, %Alias{}}
+
+      iex> delete_alias(alias)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_alias(%Alias{} = alias) do
+    Repo.delete(alias)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking alias changes.
+
+  ## Examples
+
+      iex> change_alias(alias)
+      %Ecto.Changeset{data: %Alias{}}
+
+  """
+  def change_alias(%Alias{} = alias, attrs \\ %{}) do
+    Alias.changeset(alias, attrs)
+  end
 end
