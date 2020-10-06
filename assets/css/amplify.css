@@ -1,8 +1,9 @@
 /* 
-Custom CSS to amplify user experience 
- */
+  Custom CSS to amplify user experience.
+*/
+
 /* Custom checkbox START */
-input[type="checkbox"] {
+input[type="checkbox"].styled {
   position: relative;
   outline: 0;
   margin: 0 0.5rem;
@@ -10,7 +11,7 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 /* "Track" */
-input[type="checkbox"]::before {
+input[type="checkbox"].styled::before {
   content: " ";
   display: block;
   width: 2.5rem;
@@ -20,7 +21,7 @@ input[type="checkbox"]::before {
   box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 }
 /* "Button" */
-input[type="checkbox"]::after {
+input[type="checkbox"].styled::after {
   content: " ";
   display: block;
   width: 1.5rem;
@@ -34,34 +35,34 @@ input[type="checkbox"]::after {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease-in-out;
 }
-input[type="checkbox"]:checked::after {
+input[type="checkbox"].styled:checked::after {
   transform: translateX(100%);
   background-color: #48bb78;
 }
-/* Custom checkbox END */
 
 /* Fancy buttons */
-
 .fancy-blue-button {
   transition: 0.5s ease;
   background-size: 200% auto;
   background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe);
   /* box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75); */
 }
+.fancy-green-button {
+  transition: 0.5s ease;
+  background-size: 200% auto;
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a);
+  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
+}
+
+.fancy-green-button:active,
+.fancy-green-button:hover,
 .fancy-blue-button:active,
 .fancy-blue-button:hover {
   background-position: right center;
   text-decoration: none;
 }
 
-.fancy-green-button {
-  transition: 0.5s ease;
-  background-size: 200% auto;
-  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
-  /* box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75); */
-}
-.fancy-green-button:active,
-.fancy-green-button:hover {
-  background-position: right center;
-  text-decoration: none;
+/* Dropdown */
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
